@@ -2829,6 +2829,8 @@ namespace args
                         {
 #ifndef ARGS_NOEXCEPT
                             throw Completion("");
+#else
+                            return end;
 #endif
                         }
 
