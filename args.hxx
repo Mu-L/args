@@ -2834,8 +2834,14 @@ namespace args
 #endif
                         }
 
-                        std::vector<std::string> curArgs(++it, end);
-                        curArgs.resize(completion->cword);
+                        ++it;
+                        std::vector<std::string> curArgs;
+                        curArgs.reserve(completion->cword);
+                        auto curIt = it;
+                        for (size_t idx = 0; idx < completion->cword && curIt != end; ++idx, ++curIt)
+                        {
+                            curArgs.push_back(*curIt);
+                        }
 
                         if (completion->syntax == "bash")
                         {
